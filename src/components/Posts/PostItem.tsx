@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { IPost } from '../../interfaces/IPost';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
 import { useDeletePost } from '../../hooks/Posts/PostMutation';
 import useDetailPost from '../../hooks/Posts/useDetailPost';
-import PostEditModalForm from './PostForm/PostEditModalForm';
+import { IPost } from '../../interfaces/IPost';
 import CommentCreateModalForm from '../Comment/CommentForm/CommentCreateModalForm';
+import PostEditModalForm from './PostForm/PostEditModalForm';
 
 const PostItem = ({ posts }: { posts: IPost[] }) => {
   const [page, setPage] = useState(0);
