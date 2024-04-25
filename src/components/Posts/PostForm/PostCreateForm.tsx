@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ICreatePost } from '../../../interfaces/IPost';
 import { useCreatePost } from '../../../hooks/Posts/PostMutation';

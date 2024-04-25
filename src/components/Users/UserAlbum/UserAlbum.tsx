@@ -1,4 +1,3 @@
-import React from 'react';
 import { useFetchUserAlbums } from '../../../hooks/Albums/AlbumQuery';
 import { Link } from 'react-router-dom';
 

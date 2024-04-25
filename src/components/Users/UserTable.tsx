@@ -1,4 +1,3 @@
-import React from 'react';
 import { IUser } from '../../interfaces/IUser';
 import { Link } from 'react-router-dom';
 

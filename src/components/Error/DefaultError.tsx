@@ -1,4 +1,3 @@
-import React from 'react';
 import { IErrorDefault } from '../../interfaces/IErrorDefault';
 
 const DefaultError = (props: IErrorDefault) => {

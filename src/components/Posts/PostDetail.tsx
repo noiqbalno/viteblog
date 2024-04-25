@@ -1,4 +1,3 @@
-import React from 'react';
 import ContentHeader from '../Dashboard/ContentHeader';
 import { useFetchSinglePost } from '../../hooks/Posts/PostQuery';
 import { Link, useParams } from 'react-router-dom';

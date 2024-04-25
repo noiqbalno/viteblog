@@ -1,4 +1,3 @@
-import React from 'react';
 import ContentHeader from '../Dashboard/ContentHeader';
 import UserTable from './UserTable';
 import { useFetchUsers } from '../../hooks/Users/UserQuery';

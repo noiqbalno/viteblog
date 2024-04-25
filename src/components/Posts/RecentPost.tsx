@@ -1,4 +1,3 @@
-import React from 'react';
 import { useFetchPosts } from '../../hooks/Posts/PostQuery';
 import { Link } from 'react-router-dom';
 

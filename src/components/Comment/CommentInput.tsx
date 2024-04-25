@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CommentInput = () => {
   return (
     <form className="form-horizontal mb-4">

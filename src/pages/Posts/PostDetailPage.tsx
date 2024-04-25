@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../../components/Dashboard/Navbar';
 import Footer from '../../components/Dashboard/Footer';
 import PostDetail from '../../components/Posts/PostDetail';

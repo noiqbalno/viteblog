@@ -1,4 +1,3 @@
-import React from 'react';
 import { IPhoto } from '../../interfaces/IPhoto';
 
 const PhotoDetailModal = ({ photo }: { photo: IPhoto | null }) => {
