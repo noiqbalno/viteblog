@@ -5,3 +5,10 @@ export interface IComment {
   email: string;
   body: string;
 }
+
+export interface ICommentForm {
+  postId?: number;
+  name: string;
+  email: string;
+  body: string;
+}

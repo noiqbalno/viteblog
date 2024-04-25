@@ -1,34 +1,45 @@
-import React from 'react';
+import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
-import { ICreatePost } from '../../../interfaces/IPost';
-import { useCreatePost } from '../../../hooks/Posts/PostMutation';
+import { useUpdateComment } from '../../../hooks/Comments/CommentMutation';
+import { IComment, ICommentForm } from '../../../interfaces/IComment';
 
-const PostCreateForm = () => {
+const CommentEditForm = ({ currentComment }: { currentComment: IComment }) => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<ICreatePost>({
-    mode: 'onChange',
+  } = useForm<ICommentForm>({
+    defaultValues: useMemo(() => {
+      return currentComment;
+    }, [currentComment]),
   });
 
-  const mutation = useCreatePost();
+  useEffect(() => {
+    reset(currentComment);
+  }, [currentComment]);
 
-  const onSubmitForm = (data: ICreatePost) => {
+  const mutation = useUpdateComment();
+
+  const onSubmitForm = (data: ICommentForm) => {
     mutation.mutate({
-      title: data.title,
-      body: data.body,
-      userId: 1,
+      id: currentComment?.id as number,
+      data: {
+        name: data.name,
+        email: data.email,
+        body: data.body,
+        postId: currentComment?.postId,
+      },
     });
   };
 
-  console.log('errors ' + errors.body);
+  console.log('currentComment', currentComment);
 
   return (
     <form className="modal-content" onSubmit={handleSubmit(onSubmitForm)}>
       <div className="modal-header">
-        <h5 className="modal-title" id="postCreateModalFormLabel">
-          Create Post
+        <h5 className="modal-title" id="posteditModalFormLabel">
+          Edit Comment
         </h5>
         <button
           type="button"
@@ -42,14 +53,26 @@ const PostCreateForm = () => {
       <div className="modal-body">
         <div>
           <div className="form-group">
-            <label className="col-form-label">Title:</label>
+            <label className="col-form-label">Name:</label>
             <input
               type="text"
               className="form-control"
               required
-              {...register('title', { required: true })}
+              {...register('name', { required: true })}
             />
-            {errors.title && (
+            {errors.name && (
+              <small className="text-danger">This field is required</small>
+            )}
+          </div>
+          <div className="form-group">
+            <label className="col-form-label">Email:</label>
+            <input
+              type="text"
+              className="form-control"
+              required
+              {...register('email', { required: true })}
+            />
+            {errors.email && (
               <small className="text-danger">This field is required</small>
             )}
           </div>
@@ -87,4 +110,4 @@ const PostCreateForm = () => {
   );
 };
 
-export default PostCreateForm;
+export default CommentEditForm;

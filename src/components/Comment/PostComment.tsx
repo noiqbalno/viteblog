@@ -1,8 +1,15 @@
-import React, { Fragment } from 'react';
-import { useFetchPostComments } from '../../hooks/Comments/CommentQuery';
+import { Fragment } from 'react';
+import { useGetCommentsObserver } from '../../hooks/Comments/CommentQuery';
+import useDetailComment from '../../hooks/Comments/useDetailComment';
+import CommentCreateModalForm from './CommentForm/CommentCreateModalForm';
+import CommentEditModalForm from './CommentForm/CommentEditModalForm';
+import CommentInput from './CommentInput';
+import CommentItem from './CommentItem';
 
 const PostComment = ({ postId }: { postId: string | undefined }) => {
-  const postComments = useFetchPostComments(postId as string);
+  const { comment, onDetailCommentClick } = useDetailComment(null);
+
+  const postComments = useGetCommentsObserver(postId as string);
 
   if (postComments.isLoading) return <div>Loading...</div>;
 
@@ -13,36 +20,17 @@ const PostComment = ({ postId }: { postId: string | undefined }) => {
 
   return (
     <div>
-      <form className="form-horizontal mb-4">
-        <div className="input-group input-group-sm mb-0">
-          <input
-            className="form-control form-control-sm"
-            placeholder="Write Comment.."
-          />
-          <div className="input-group-append">
-            <button type="submit" className="btn btn-danger">
-              Send
-            </button>
-          </div>
-        </div>
-      </form>
+      <CommentInput />
 
       {postComments.data &&
         postComments.data.map((item) => (
           <Fragment key={item.id}>
-            <div className="user-block w-100 mb-4">
-              <span className="float-right btn-tool">
-                <i className="fas fa-ellipsis-v"></i>
-              </span>
-
-              <span className="username font-weight-normal ml-0">
-                <span className="text-primary">{item.email}</span>
-              </span>
-              <span className="text-sm">{item.name}</span>
-              <span className="description ml-0 mt-1">{item.body}</span>
-            </div>
+            <CommentItem item={item} onCommentEdit={onDetailCommentClick} />
           </Fragment>
         ))}
+
+      <CommentCreateModalForm postId={+postId!} />
+      <CommentEditModalForm comment={comment} />
     </div>
   );
 };

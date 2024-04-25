@@ -84,7 +84,12 @@ const PostEditForm = ({ currentPost }: { currentPost: IPost }) => {
         >
           Close
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button
+          className="btn btn-primary"
+          type="button"
+          data-dismiss="modal"
+          onClick={handleSubmit(onSubmitForm)}
+        >
           Submit
         </button>
       </div>

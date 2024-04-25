@@ -1,34 +1,30 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
-import { ICreatePost } from '../../../interfaces/IPost';
-import { useCreatePost } from '../../../hooks/Posts/PostMutation';
+import { useCreateComment } from '../../../hooks/Comments/CommentMutation';
+import { ICommentForm } from '../../../interfaces/IComment';
 
-const PostCreateForm = () => {
+const CommentCreateForm = ({ postId }: { postId: number }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ICreatePost>({
-    mode: 'onChange',
-  });
+  } = useForm<ICommentForm>();
 
-  const mutation = useCreatePost();
+  const mutation = useCreateComment();
 
-  const onSubmitForm = (data: ICreatePost) => {
+  const onSubmitForm = (data: ICommentForm) => {
     mutation.mutate({
-      title: data.title,
+      postId: postId,
       body: data.body,
-      userId: 1,
+      email: data.email,
+      name: data.name,
     });
   };
-
-  console.log('errors ' + errors.body);
 
   return (
     <form className="modal-content" onSubmit={handleSubmit(onSubmitForm)}>
       <div className="modal-header">
-        <h5 className="modal-title" id="postCreateModalFormLabel">
-          Create Post
+        <h5 className="modal-title" id="commentCreateModalFormLabel">
+          Add Comment
         </h5>
         <button
           type="button"
@@ -42,14 +38,26 @@ const PostCreateForm = () => {
       <div className="modal-body">
         <div>
           <div className="form-group">
-            <label className="col-form-label">Title:</label>
+            <label className="col-form-label">Name:</label>
             <input
               type="text"
               className="form-control"
               required
-              {...register('title', { required: true })}
+              {...register('name', { required: true })}
             />
-            {errors.title && (
+            {errors.name && (
+              <small className="text-danger">This field is required</small>
+            )}
+          </div>
+          <div className="form-group">
+            <label className="col-form-label">Email:</label>
+            <input
+              type="text"
+              className="form-control"
+              required
+              {...register('email', { required: true })}
+            />
+            {errors.email && (
               <small className="text-danger">This field is required</small>
             )}
           </div>
@@ -87,4 +95,4 @@ const PostCreateForm = () => {
   );
 };
 
-export default PostCreateForm;
+export default CommentCreateForm;

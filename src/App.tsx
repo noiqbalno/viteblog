@@ -9,7 +9,14 @@ import AlbumDetailPage from './pages/Album/AlbumDetailPage';
 import PostPage from './pages/Posts/PostPage';
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 20 * 1000,
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   const router = createBrowserRouter([
     {
       path: '/',

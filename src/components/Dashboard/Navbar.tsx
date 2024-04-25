@@ -34,7 +34,7 @@ const Navbar = () => {
             style={{ opacity: 0.8 }}
           />
           <span className="brand-text font-weight-light text-capitalize">
-            SmartDrive
+            Blog
           </span>
         </div>
 

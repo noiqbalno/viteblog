@@ -5,6 +5,7 @@ import ReactPaginate from 'react-paginate';
 import { useDeletePost } from '../../hooks/Posts/PostMutation';
 import useDetailPost from '../../hooks/Posts/useDetailPost';
 import PostEditModalForm from './PostForm/PostEditModalForm';
+import CommentCreateModalForm from '../Comment/CommentForm/CommentCreateModalForm';
 
 const PostItem = ({ posts }: { posts: IPost[] }) => {
   const [page, setPage] = useState(0);
@@ -87,13 +88,20 @@ const PostItem = ({ posts }: { posts: IPost[] }) => {
               </span>
             </p>
             <form className="form-horizontal">
-              <div className="input-group input-group-sm mb-0">
+              <div
+                className="input-group input-group-sm mb-0"
+                data-toggle="modal"
+                data-target="#commentCreateModalForm"
+                onClick={(e) => {
+                  onDetailPostClick(e, item);
+                }}
+              >
                 <input
                   className="form-control form-control-sm"
                   placeholder="Write Comment.."
                 />
                 <div className="input-group-append">
-                  <button type="submit" className="btn btn-primary">
+                  <button type="button" className="btn btn-primary">
                     Send
                   </button>
                 </div>
@@ -119,6 +127,7 @@ const PostItem = ({ posts }: { posts: IPost[] }) => {
         />
       </div>
       <PostEditModalForm post={post} />
+      <CommentCreateModalForm postId={post?.id as number} />
     </>
   );
 };
