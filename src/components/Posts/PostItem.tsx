@@ -16,7 +16,7 @@ const PostItem = ({ posts }: { posts: IPost[] }) => {
     setFilteredData(
       posts
         .sort((a, b) => b.id - a.id)
-        .filter((item, index) => {
+        .filter((_item, index) => {
           return index >= page * n && index < (page + 1) * n;
         })
     );
