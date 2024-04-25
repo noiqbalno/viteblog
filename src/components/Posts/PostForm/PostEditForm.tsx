@@ -32,8 +32,6 @@ const PostEditForm = ({ currentPost }: { currentPost: IPost }) => {
     });
   };
 
-  console.log('currentPost', currentPost);
-
   return (
     <form className="modal-content" onSubmit={handleSubmit(onSubmitForm)}>
       <div className="modal-header">

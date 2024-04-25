@@ -33,8 +33,6 @@ const CommentEditForm = ({ currentComment }: { currentComment: IComment }) => {
     });
   };
 
-  console.log('currentComment', currentComment);
-
   return (
     <form className="modal-content" onSubmit={handleSubmit(onSubmitForm)}>
       <div className="modal-header">

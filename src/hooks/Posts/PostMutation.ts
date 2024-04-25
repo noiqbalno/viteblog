@@ -68,20 +68,16 @@ export const useUpdatePost = () => {
       toast.error(`Error ${error.response?.status}, Update data failed`);
     },
     onSuccess: (updatedPost: IPost) => {
-      console.log('updatePostL ', updatedPost);
       queryClient.setQueryData(['Posts'], (prevPosts: IPost[] | undefined) => {
         if (prevPosts) {
           prevPosts.map((post) => {
             if (post.id === updatedPost.id) {
-              console.log('yeee');
               post.title = updatedPost.title;
               post.body = updatedPost.body;
             }
-            console.log('newpost: ', post);
             return post;
           });
         }
-        console.log('return prev: ', prevPosts);
         return prevPosts;
       });
 

@@ -87,10 +87,7 @@ export const useUpdateComment = () => {
                 comment.email = updatedComment.email;
                 comment.body = updatedComment.body;
                 comment.name = updatedComment.name;
-                console.log('rsgrsfd');
               }
-              console.log('prevComments: ', prevComments);
-              console.log('updatedComment: ', updatedComment);
               return comment;
             });
           }

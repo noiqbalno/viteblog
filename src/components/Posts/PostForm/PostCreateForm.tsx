@@ -22,8 +22,6 @@ const PostCreateForm = () => {
     });
   };
 
-  console.log('errors ' + errors.body);
-
   return (
     <form className="modal-content" onSubmit={handleSubmit(onSubmitForm)}>
       <div className="modal-header">

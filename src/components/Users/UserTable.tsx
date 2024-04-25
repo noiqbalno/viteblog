@@ -3,7 +3,6 @@ import { IUser } from '../../interfaces/IUser';
 import { Link } from 'react-router-dom';
 
 const UserTable = ({ data }: { data: IUser[] | undefined }) => {
-  console.log('user data: ', data);
   return (
     <table className="table table-hover text-nowrap">
       <thead>
